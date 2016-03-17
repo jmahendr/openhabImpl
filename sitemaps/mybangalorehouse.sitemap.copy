@@ -1,0 +1,7 @@
+sitemap mybangalorehouse label="Bangalore House"
+{
+    Frame label="Bangalore" {
+        Group item=gFF label="First Floor" icon="firstfloor"
+        Group item=we label="Weather"
+    }
+}

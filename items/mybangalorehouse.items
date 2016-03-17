@@ -1,0 +1,21 @@
+Group gFF "First Floor"
+Group FF_Bed    "Bedroom" <bedroom> (gFF)
+Group we
+Group utility
+
+
+Switch Light_FF_Bed_Ceiling "Lamp" (FF_Bed) {mqtt=">[mosquitto:/com/jmahendr/h1/ff/L1:command:*:MAP(jmSwitch.map)]"}
+Switch Fan_FF_Bed_Ceiling "Fan" (FF_Bed) {mqtt=">[mosquitto:/com/jmahendr/h1/ff/F1:command:*:MAP(jmSwitch.map)]"}
+
+Number temperature "Temperature [%.1f °C]" <temperature> (we) {http="<[http://weather.yahooapis.com/forecastrss?p=INXX0012&u=c:60000:XSLT(yahoo_weather_temperature.xsl)]"}
+Number humidity "Humidity [%.1f %%]" <temperature> (we) {http="<[http://weather.yahooapis.com/forecastrss?p=INXX0012&u=c:60000:XSLT(yahoo_weather_humidity.xsl)]"}
+Number IndoorTemp "Indoor Temperature [%.1f °C]" <temperature> (we) {mqtt="<[mosquitto:/com/jmahendr/h1/T1:state:default]"}
+Number IndoorHumidity "Indoor Humidity [%.1f %%]" <temperature> (we) {mqtt="<[mosquitto:/com/jmahendr/h1/H1:state:default]"}
+
+Number OverHeadTank "Over Head Tank [%.1f %%]" <oht> (utility) {mqtt="<[mosquitto:/com/jmahendr/h1/utility/OHT:state:default]"}
+
+Contact TDoor "Terrace Door" <door> (gFF) {mqtt="<[mosquitto:/com/jmahendr/h1/ff/D1:state:default]"}
+
+Switch pump    "Pump"  (utility) {mqtt=">[mosquitto:/com/jmahendr/h1/utility/pump/P1:command:*:default]"}
+
+DateTime PumpLastUpdate "Last Update [%1$ta %1$tR]" (utility) <clock>
